@@ -8,6 +8,7 @@ import * as RoutePath from './routes/routes.js'
 import Home from './components/Home/Home.jsx'
 import Login from './components/Login/Login.jsx'
 import Blogs from './components/Blogs/Blogs.jsx'
+import SignUp from './components/SignUp/SignUp.jsx'
 
 
 
@@ -28,6 +29,10 @@ const routes=createBrowserRouter([
       {
         path:RoutePath.BLOG,
         element:<Blogs/>
+      },
+      {
+        path:RoutePath.SIGNUP,
+        element:<SignUp/>,
       }
     ]
 
