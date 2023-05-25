@@ -28,7 +28,7 @@ const Navbar = () => {
      <li> <Link  to={RoutePath.DASHBOARD}>Home</Link>  </li>
        <li><Link to=''>Chef</Link></li>
         <li><Link to={RoutePath.BLOG}>Blog</Link></li>
-      <li><Link to=''>Contact</Link></li> 
+      <li><Link href='/contact'>Contact</Link></li> 
     </ul>
   </div>
   <div className="navbar-end">
