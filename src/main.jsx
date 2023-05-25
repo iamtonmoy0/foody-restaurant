@@ -20,7 +20,10 @@ const routes=createBrowserRouter([
     children:[
       {
         path:RoutePath.DASHBOARD,
-        element:<Home/>
+        element:<Home/>,
+        loader:async ()=>{
+          return fetch('https://recipe-server-ruby.vercel.app/chefs');
+        }
       },
       {
         path:RoutePath.LOGIN,
