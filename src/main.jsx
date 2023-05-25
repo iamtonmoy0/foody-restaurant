@@ -6,6 +6,7 @@ import './index.css'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import * as RoutePath from './routes/routes.js'
 import Home from './components/Home/Home.jsx'
+import Login from './components/Login/Login.jsx'
 
 
 
@@ -18,7 +19,11 @@ const routes=createBrowserRouter([
       {
         path:RoutePath.DASHBOARD,
         element:<Home/>
-      }
+      },
+      {
+        path:RoutePath.LOGIN,
+        element:<Login/>,
+      },
     ]
 
   }
