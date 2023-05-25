@@ -9,6 +9,7 @@ import Home from './components/Home/Home.jsx'
 import Login from './components/Login/Login.jsx'
 import Blogs from './components/Blogs/Blogs.jsx'
 import SignUp from './components/SignUp/SignUp.jsx'
+import Recipe from './pages/Recipe.jsx'
 
 
 
@@ -36,6 +37,12 @@ const routes=createBrowserRouter([
       {
         path:RoutePath.SIGNUP,
         element:<SignUp/>,
+      },
+      {
+        path:RoutePath.Recipe,
+        element:<Recipe/>,
+        loader:({params})=>fetch(`https://recipe-server-ruby.vercel.app/recipe/${params.chef_id}`)
+
       }
     ]
 
