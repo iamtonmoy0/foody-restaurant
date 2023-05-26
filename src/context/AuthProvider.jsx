@@ -30,7 +30,7 @@ const AuthProvider = ({children}) => {
 	}
 
 	//logout
-	const logOut=(email,password)=>{
+	const logOut=()=>{
 
 		return signOut(auth);
 	}

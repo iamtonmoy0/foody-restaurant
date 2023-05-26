@@ -1,6 +1,8 @@
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import Hero from "../../pages/Hero";
 import Chef from "../../pages/Chef";
+import OurStory from "../../pages/OurStory";
+import CustomerReviewSection from "../../pages/CustomerReviewSection";
 
 
 const Home = () => {
@@ -19,6 +21,10 @@ const Home = () => {
 				}
 				
 			</div>
+			<p className="text-center text-5xl font-bold heroHeader ">Our Story</p>
+			
+			<OurStory/>
+			<CustomerReviewSection/>
 		</>
 	);
 }

@@ -19,6 +19,9 @@ const handleRegister=(e)=>{
   const photoLink=form.link.value;
   const email=form.email.value;
   const password=form.password.value;
+  if(password.length<6){
+    toast.warning('password should be minimum 6 characters long')  
+}
   createUser(email,password)
   .then(result=>{
     form.reset();
