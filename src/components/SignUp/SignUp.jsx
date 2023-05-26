@@ -1,5 +1,17 @@
 import { Link } from "react-router-dom";
 
+
+const handleRegister=(e)=>{
+  e.preventDefault();
+  const form=e.target;
+  const name=form.name.value;
+  const photoLink=form.link.value;
+  const email=form.email.value;
+  const password=form.password.value;
+  console.log(name,photoLink,email,password)
+
+}
+
 const SignUp = () => {
 	return (
 		<div>
@@ -9,30 +21,30 @@ const SignUp = () => {
       <h1 className="text-5xl font-bold text-red-300 ">Register Here !</h1>
        </div>
     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-200">
-      <form className="card-body">
+      <form className="card-body" onSubmit={handleRegister}>
 	<div className="form-control">
           <label className="label">
             <span className="label-text">Name</span>
           </label>
-          <input type="text" placeholder=" Enter your name" className="input input-bordered" required />
+          <input type="text" placeholder=" Enter your name" className="input input-bordered" name="name" required />
         </div>
 	<div className="form-control">
           <label className="label">
             <span className="label-text">Photo Link</span>
           </label>
-          <input type="text" placeholder="Link " className="input input-bordered" required />
+          <input type="text" placeholder="Link " className="input input-bordered" name="link" required />
         </div>
         <div className="form-control">
           <label className="label">
             <span className="label-text">Email</span>
           </label>
-          <input type="text" placeholder="email" className="input input-bordered" required />
+          <input type="email" placeholder="email" className="input input-bordered" name="email" required />
         </div>
         <div className="form-control">
           <label className="label">
             <span className="label-text">Password</span>
           </label>
-          <input type="text" placeholder="password" className="input input-bordered" required/>
+          <input type="password" placeholder="password" className="input input-bordered" name="password" required/>
           
 	<label className="label">
             <p className="label-text-alt "> Already  have an account? <Link to='/login' className="label-text-alt link link-hover">Login here.</Link></p>

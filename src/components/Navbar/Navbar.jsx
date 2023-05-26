@@ -2,9 +2,24 @@
 import { Link } from 'react-router-dom';
 import './Navbar.css'
 import * as RoutePath from '../../routes/routes'
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthProvider';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Navbar = () => {
-  
+const {user,logOut}=useContext(AuthContext); 
+const handleLogout=()=>{
+  logOut()
+  .then(()=>{
+    toast.success('successfully logout')
+
+  })
+  .catch(error=>{
+    toast.error(error.message)
+  })
+} 
+console.log(user)
 
 
 	return (
@@ -32,12 +47,20 @@ const Navbar = () => {
     </ul>
   </div>
   <div className="navbar-end">
-      <Link  to={RoutePath.LOGIN} className="btn glass text-black mr-5 border-0 bg-red-500">Login</Link>
+      {
+        user? 
+          <Link  to={RoutePath.DASHBOARD} className="btn glass text-black mr-5 border-0 bg-red-500" onClick={handleLogout}>Logout</Link> 
+        : <Link  to={RoutePath.LOGIN} className="btn glass text-black mr-5 border-0 bg-red-500">Login</Link>
+      }
       <div className="w-10 rounded-full mr-2">
-          <img src="/Logo.png" />
+          {
+            user? <img src={user.photoURL} className='rounded-full' />
+            : <img src="/Logo.png" />
+
+          }
 	</div>
   </div>
-
+<ToastContainer/>
 </div>
 	);
 }

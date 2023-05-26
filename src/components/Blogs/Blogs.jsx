@@ -1,12 +1,12 @@
 
-import ExamplePdf from "../../../public/blog.pdf";
+import ExamplePdf from "/blog.pdf";
 import { Link } from "react-router-dom";
 
 const Blogs = () => {
 	return (
 		<div className="text-center">
       <Link
-        to="../../../public/blog.pdf"
+        to="/blog.pdf"
         href={ExamplePdf}
         download="ExamplePdf.pdf"
         target="_blank"
