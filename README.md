@@ -1,5 +1,5 @@
 ## Foody for real food lover
-### **Our Project Features:**
+###  Project Features:**
 * This project has some different routes. They are Home, Contact, Blog and a Login route
 * Home route is our Homepage which initially loads Six Chef Details and renders 4 componens. They are Banner component, ChefInfo Component, FeaturedRecipe Component and Testimonials component.
 * HomePage contains a 'View Recipes' button, Onclick this button redirects you to a recipedetails route shows all recipes of the specific chef.
