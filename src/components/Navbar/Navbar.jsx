@@ -8,7 +8,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Navbar = () => {
-const {user,logOut}=useContext(AuthContext); 
+const {user,logOut}=useContext(AuthContext);
+
 const handleLogout=()=>{
   logOut()
   .then(()=>{
@@ -19,6 +20,7 @@ const handleLogout=()=>{
     toast.error(error.message)
   })
 } 
+
 
 
 
@@ -52,9 +54,9 @@ const handleLogout=()=>{
           <Link  to={RoutePath.DASHBOARD} className="btn glass text-black mr-5 border-0 bg-red-500" onClick={handleLogout}>Logout</Link> 
         : <Link  to={RoutePath.LOGIN} className="btn glass text-black mr-5 border-0 bg-red-500">Login</Link>
       }
-      <div className="w-10 rounded-full mr-2">
+      <div className="w-10 rounded-full mr-6">
           {
-            user? <img src={user.photoURL} className='rounded-full' />
+            user? <div className="tooltip tooltip-bottom text-white" data-tip={user.displayName}><img src={user.photoURL} alt="" className='rounded-full' /></div>
             : <img src="/Logo.png" />
 
           }

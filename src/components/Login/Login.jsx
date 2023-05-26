@@ -5,13 +5,14 @@ import { ToastContainer,toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { Player } from "@lottiefiles/react-lottie-player";
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
-import * as RoutePath from '../../routes/routes'
+
 
 const Login = () => {
   const {logIn,gitLogin,googleLogin}=useContext(AuthContext)
   const navigate=useNavigate()
   const location=useLocation()
-  const from=location.state?.from?.pathname || RoutePath.DASHBOARD
+
+  const from=location.state?.from?.pathname || '/';
   const handleLogin=(e)=>{
     e.preventDefault();
     const form = e.target;
@@ -19,8 +20,8 @@ const Login = () => {
     const password=form.password.value;
     logIn(email,password)
     .then(()=>{
-      form.reset()
-       toast.success('successfully Logged in')
+      form.reset();
+       toast.success('successfully Logged in');
        navigate(from)
     })
     .catch(error=>{
@@ -31,14 +32,22 @@ const Login = () => {
     //  google
 const googleProvider=new GoogleAuthProvider()
     const handleGoogle=()=>{
-      return googleLogin(googleProvider);
-      
+      return googleLogin(googleProvider) 
+      .then(()=>{
+        navigate(from)
+        toast.success('login successful')
+      })
+       
       
     }
     //git login
     const gitProvider=new GithubAuthProvider()
     const handleGit=()=>{
       return gitLogin(gitProvider)
+      .then(()=>{
+        navigate(from)
+        toast.success('login successful')
+      })
     }
 
     

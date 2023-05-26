@@ -27,6 +27,7 @@ const AuthProvider = ({children}) => {
 	//git
 	const gitLogin=(gitProvider)=>{
 		return signInWithPopup(auth,gitProvider)
+		
 	}
 	
 
