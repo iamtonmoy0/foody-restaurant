@@ -1,4 +1,15 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthProvider";
+import { ToastContainer, toast } from "react-toastify";
+import { updateProfile } from "firebase/auth";
+
+
+
+const SignUp = () => {
+const {createUser}=useContext(AuthContext)
+
+
 
 
 const handleRegister=(e)=>{
@@ -8,13 +19,33 @@ const handleRegister=(e)=>{
   const photoLink=form.link.value;
   const email=form.email.value;
   const password=form.password.value;
-  console.log(name,photoLink,email,password)
+  createUser(email,password)
+  .then(result=>{
+    form.reset();
+    toast.success('Registration successful')
+     userUpdate(result.user,name,photoLink);
+     
+  })
+  .catch(error=>{
+    toast.error(error.message)
+  })
 
-}
 
-const SignUp = () => {
+  
+  }
+	//user update
+	const userUpdate=(user,name,photoLink)=>{
+     updateProfile(user,{displayName:name,photoURL:photoLink})
+     .then(()=>{})
+     .catch(error=>{
+      toast.error(error.message)
+     })
+  }
+
+
 	return (
 		<div>
+      <ToastContainer/>
 		<div className="hero min-h-screen " style={{backgroundImage:`url("/images/bg.jpg")`}}>
   <div className="hero-content flex-col lg:flex-row-reverse ">
     <div className="text-center lg:text-left">
@@ -26,25 +57,25 @@ const SignUp = () => {
           <label className="label">
             <span className="label-text">Name</span>
           </label>
-          <input type="text" placeholder=" Enter your name" className="input input-bordered" name="name" required />
+          <input type="text" placeholder=" Enter your name" className="input input-bordered" name="name" required id="name" />
         </div>
 	<div className="form-control">
           <label className="label">
             <span className="label-text">Photo Link</span>
           </label>
-          <input type="text" placeholder="Link " className="input input-bordered" name="link" required />
+          <input type="text" placeholder="Link " className="input input-bordered" name="link" required id="link" />
         </div>
         <div className="form-control">
           <label className="label">
             <span className="label-text">Email</span>
           </label>
-          <input type="email" placeholder="email" className="input input-bordered" name="email" required />
+          <input type="email" placeholder="email" className="input input-bordered" name="email" required id="email" />
         </div>
         <div className="form-control">
           <label className="label">
             <span className="label-text">Password</span>
           </label>
-          <input type="password" placeholder="password" className="input input-bordered" name="password" required/>
+          <input type="password" placeholder="password" className="input input-bordered" name="password" required id="password" />
           
 	<label className="label">
             <p className="label-text-alt "> Already  have an account? <Link to='/login' className="label-text-alt link link-hover">Login here.</Link></p>
