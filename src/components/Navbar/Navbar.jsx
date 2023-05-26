@@ -19,7 +19,7 @@ const handleLogout=()=>{
     toast.error(error.message)
   })
 } 
-console.log(user)
+
 
 
 	return (

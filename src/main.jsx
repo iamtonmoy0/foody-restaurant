@@ -11,6 +11,7 @@ import Blogs from './components/Blogs/Blogs.jsx'
 import SignUp from './components/SignUp/SignUp.jsx'
 import Recipe from './pages/Recipe.jsx'
 import AuthProvider from './context/AuthProvider.jsx'
+import PrivateRoute from './routes/PrivateRoute.jsx'
 
 
 
@@ -41,7 +42,7 @@ const routes=createBrowserRouter([
       },
       {
         path:RoutePath.Recipe,
-        element:<Recipe/>,
+        element:<PrivateRoute><Recipe/></PrivateRoute>,
         loader:({params})=>fetch(`https://recipe-server-ruby.vercel.app/recipe/${params.chef_id}`)
 
       }

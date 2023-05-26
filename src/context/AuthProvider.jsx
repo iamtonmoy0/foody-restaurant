@@ -24,10 +24,13 @@ const AuthProvider = ({children}) => {
 	const googleLogin=(googleProvider)=>{
 		return signInWithPopup(auth,googleProvider)
 	}
-
+	//git
 	const gitLogin=(gitProvider)=>{
 		return signInWithPopup(auth,gitProvider)
 	}
+	
+
+	
 
 	//logout
 	const logOut=()=>{

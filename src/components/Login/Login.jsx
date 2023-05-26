@@ -1,23 +1,27 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider";
 import { ToastContainer,toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { Player } from "@lottiefiles/react-lottie-player";
-import { GoogleAuthProvider } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
+import * as RoutePath from '../../routes/routes'
 
 const Login = () => {
   const {logIn,gitLogin,googleLogin}=useContext(AuthContext)
-
+  const navigate=useNavigate()
+  const location=useLocation()
+  const from=location.state?.from?.pathname || RoutePath.DASHBOARD
   const handleLogin=(e)=>{
     e.preventDefault();
     const form = e.target;
     const email=form.email.value;
     const password=form.password.value;
     logIn(email,password)
-    .then(result=>{
+    .then(()=>{
       form.reset()
        toast.success('successfully Logged in')
+       navigate(from)
     })
     .catch(error=>{
       toast.error(error.message,'Try again')
@@ -27,9 +31,17 @@ const Login = () => {
     //  google
 const googleProvider=new GoogleAuthProvider()
     const handleGoogle=()=>{
-      return googleLogin(googleProvider)
+      return googleLogin(googleProvider);
+      
       
     }
+    //git login
+    const gitProvider=new GithubAuthProvider()
+    const handleGit=()=>{
+      return gitLogin(gitProvider)
+    }
+
+    
 	return (
 		<>
 		<div className="hero min-h-screen " style={{backgroundImage:`url("/images/bg.jpg")`}}>
@@ -66,7 +78,7 @@ const googleProvider=new GoogleAuthProvider()
       <p className="self-center">Sign in Using</p>
        <div className="flex self-center">
               <button className="btn bg-lime-200 border-0" onClick={handleGoogle} > <Player  src='https://assets1.lottiefiles.com/private_files/lf30_3nvqj06a.json' className="player" autoplay loop style={{height:'60px'}}/> </button>
-              <button className="btn btn-ghost"> <Player  src='https://assets3.lottiefiles.com/packages/lf20_S6vWEd.json' className="player" autoplay loop style={{height:'60px'}}/></button>
+              <button className="btn btn-ghost" onClick={handleGit}> <Player  src='https://assets3.lottiefiles.com/packages/lf20_S6vWEd.json' className="player" autoplay loop style={{height:'60px'}}/></button>
             </div>
 
     </div>
